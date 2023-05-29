@@ -66,12 +66,11 @@ jobs:
 
 
     - name: Auto-generate CHANGELOG
-      uses: scottbrenner/generate-changelog-action@master
-      id: Changelog
+      uses: BobAnkh/auto-generate-changelog@v1.2.4
       with:
         REPO_NAME: ${{ github.repository }}
         ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        package-dir: 'CHANGELOG.md'
+        PATH: 'CHANGELOG.md'
         COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
         TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
 
