@@ -65,21 +65,21 @@ jobs:
 
 
 
-    - name: Auto-generate CHANGELOG
-      id: changelog
-      uses: BobAnkh/auto-generate-changelog@v1.2.4
+   
+
+
+    - name: Changelog
+      uses: scottbrenner/generate-changelog-action@master
+      id: Changelog
       with:
-        REPO_NAME: ${{ github.repository }}
-        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
-        PATH: 'CHANGELOG.md'
-        COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
-        TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+        from-tag: 0.0.1
+        to-tag: ${{ steps.taggerDryRun.outputs.new_tag }}
+
+
 
 
 
     
-
- 
       
        
 
