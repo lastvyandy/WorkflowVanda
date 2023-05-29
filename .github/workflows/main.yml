@@ -1,0 +1,99 @@
+name: Construir imagen docker (y liberar release)
+
+
+# Aqui esta esperando un evento, en este caso un "push" dentro del branch "qa"
+
+on:
+  push:
+   
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+    tags:
+      - '1.0'
+
+
+permissions:
+  contents: write
+  pull-requests: write 
+  issues: read
+  packages: write
+
+jobs:
+
+
+
+# Build, aqui especificamos en que sistema va a correr, en este caso utilizamos ubuntu-latest, pero podemos
+# utilizar otros sistemas, como windows-latest y macos-latest
+  build:
+
+    runs-on: ubuntu-latest
+
+# Steps, aqui esta lo que hara el sistema cuando ocurra la accion especificada arriba, en el caso de la de
+# abajo, sera construir la imagen docker
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Construir imagen de docker 
+      run: docker build . --target deploy_image --file Dockerfile --tag my-image-name:$(date +%s)
+      
+      
+      
+
+      
+    
+ 
+    
+
+      
+    - name: Auto Incrementar version de tag
+      uses: MCKanpolat/auto-semver-action@v1
+      id: versioning
+      with:
+        releaseType: patch 
+        incrementPerCommit: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        DRY_RUN: true
+
+    - name: Crear variable del nuevo tag
+      run: |
+        echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
+
+
+
+
+
+
+    - name: Auto-generate CHANGELOG
+      id: changelogss
+      uses: BobAnkh/auto-generate-changelog@v1.2.4
+      with:
+        REPO_NAME: ${{ github.repository }}
+        ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        PATH: 'CHANGELOG.md'
+        COMMIT_MESSAGE: 'docs(CHANGELOG): update release notes'
+        TYPE: 'feat:Feature,fix:Bug Fixes,docs:Documentation,refactor:Refactor,perf:Performance Improvements'
+
+
+
+    - name: Changelog
+      uses: scottbrenner/generate-changelog-action@master
+      id: Changelog
+      with:
+        from-tag: "last tag"
+        to-tag: "current tag"
+
+
+
+
+
+    
+      
+       
+
+
+ 
+      
+      
+   
