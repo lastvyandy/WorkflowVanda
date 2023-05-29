@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [0.0.2](https://github.com/lastvyandy/WorkflowVanda/releases/tag/0.0.2) - 2023-05-29 19:18:08
+
+**Full Changelog**: https://github.com/lastvyandy/WorkflowVanda/compare/0.0.1...0.0.2
+
 ## [0.0.1](https://github.com/lastvyandy/WorkflowVanda/releases/tag/0.0.1) - 2023-05-29 17:41:52
 
 **Full Changelog**: https://github.com/lastvyandy/WorkflowVanda/commits/0.0.1
