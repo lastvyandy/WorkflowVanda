@@ -43,13 +43,7 @@ jobs:
 
       
     
-      
-    #- name: Obtener nombre de release
-     # run: |
-      #    GITHUB_REF=${{ github.ref }}
-       #   RELEASE_NAME=${GITHUB_REF#"refs/tags/"}
-        #  echo "RELEASE_NAME=${RELEASE_NAME}" >> $GITHUB_ENV
-
+ 
     
 
       
@@ -67,22 +61,7 @@ jobs:
         echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
 
 
-    - name: Crear release y subirla
-      id: create_release
-      uses: actions/create-release@v1
-       
 
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      with:
-          tag_name: ${{ steps.versioning.outputs.version }}
-          release_name: QA Release ${{ steps.versioning.outputs.version }}
-          body: |
-            Cambios en este release
-            - Primer cambio (reemplazar con variables, solo a modo de ejemplo)
-            - Segundo cambio (reemplazar con variables, solo a modo de ejemplo)
-          draft: false
-          prerelease: false
 
 
 
