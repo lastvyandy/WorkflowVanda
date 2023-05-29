@@ -65,8 +65,8 @@ jobs:
 
 
 
-    - name: Changelog
-      uses: BobAnkh/auto-generate-changelog@v1
+    - name: Auto-generate CHANGELOG
+      uses: BobAnkh/auto-generate-changelog@v1.2.4
       with:
         REPO_NAME: ${{ github.repository }}
         ACCESS_TOKEN: ${{secrets.GITHUB_TOKEN}}
