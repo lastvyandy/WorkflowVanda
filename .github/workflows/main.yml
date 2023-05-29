@@ -81,8 +81,8 @@ jobs:
       uses: scottbrenner/generate-changelog-action@master
       id: Changelog
       with:
-        from-tag: 0.0.1
-        to-tag: HEAD
+        from-tag: "last tag"
+        to-tag: "current tag"
 
 
 
