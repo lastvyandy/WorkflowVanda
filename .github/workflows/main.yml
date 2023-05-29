@@ -62,25 +62,19 @@ jobs:
 
 
 
+    - name: Changelog
+      uses: scottbrenner/generate-changelog-action@master
+      id: Changelog
+env:
+           REPO: ${{ github.repository }}
 
 
 
-
-    - name: Auto Incrementar version de tag
-      uses: CupOfTea696/gh-action-auto-release@v1.0.0
-      with:
-          title: "Release: $version"
-          tag: "v$semver"
-          draft: false
-          regex: "/^Release: #{semver}$/i"
-    env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
        
 
 
-
-# Se libera un paquete     
+ 
       
       
    
